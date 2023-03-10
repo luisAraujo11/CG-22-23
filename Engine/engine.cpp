@@ -29,7 +29,7 @@
 using namespace tinyxml2;
 using namespace std;
 
-float camX, camY, camZ;  //posicao x,y,z da camara
+float camX, camY, camZ;  //camara
 int alpha = 0, beta = 0, r = 20;      // angulos e raio da camara
 int xInicial, yInicial, modoRato = 0;   //posicoes anteriores da camara e modo da mesma
 double lookX;
