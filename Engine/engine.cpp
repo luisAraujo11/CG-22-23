@@ -25,6 +25,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iterator>
 
 using namespace tinyxml2;
 using namespace std;
@@ -260,7 +261,7 @@ void keyboard(unsigned char key, int x, int y)
 	if (key == 'f') {    //pinta a figura
 		tipo = GL_FILL;
 	}
-	if (key == 'l') {   
+	if (key == 'l') {   //mostras as linhas 
 		tipo = GL_LINE;
 	}
 	if (key == 'p') {
@@ -404,7 +405,7 @@ int main(int argc, char* argv[]) {
 		readXML(argv[1]);
 	}
 	else {
-		readXML("test_1_1.xml");
+		readXML("test_1_6.xml");
 	}
 
 
