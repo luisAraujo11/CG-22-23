@@ -1,16 +1,17 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Project Name
-PROJECT(generator)
+PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} generator.cpp)
+add_executable(${PROJECT_NAME} engine.cpp tinyxml2.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
 link_directories(${OpenGL_LIBRARY_DIRS})
 add_definitions(${OpenGL_DEFINITIONS})
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
