@@ -296,7 +296,7 @@ void readXML(string file) {
 		cout << "Ficheiro lido com sucesso" << endl;
 
 		// Carrega o caminho do diretório que contém os arquivos 3D
-		string dirPath = "/Users/Asus/Desktop/trabCG/3dFiles/";
+		string dirPath = "/Users/Asus/Desktop/trabCG/3D/";
 
 		//Para o .3d
 		XMLElement* elemento = xml.FirstChildElement("world")->FirstChildElement("group");

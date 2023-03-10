@@ -28,7 +28,7 @@ void drawPlane(float length, int divisions, string name) {
     z = z / 2;
 
     fstream(file);
-    file.open("/Users/Asus/Desktop/trabCG/3dFiles/" + name, fstream::out);
+    file.open("/Users/Asus/Desktop/trabCG/3D/" + name, fstream::out);
     
     if (file.is_open()) {
         int vertices = 2 * divisions * divisions * 3;
@@ -69,7 +69,7 @@ void drawBox(float size, int divisions, string name) {
     float mid = y / 2;
 
     fstream(file);
-    file.open("/Users/Asus/Desktop/trabCG/3dFiles/" + name, fstream::out);
+    file.open("/Users/Asus/Desktop/trabCG/3D/" + name, fstream::out);
 
     if (file.is_open()) {
         int vertices = 6 * 2 * divisions * divisions * 3;
@@ -144,7 +144,7 @@ void drawCone(float radius, float height, int slices1, int stacks1, string name)
     float slices = (float)slices1;
     float stacks = (float)stacks1;
     fstream file;
-    file.open("/Users/Asus/Desktop/trabCG/3dFiles/" + name, fstream::out);
+    file.open("/Users/Asus/Desktop/trabCG/3D/" + name, fstream::out);
 
     float raio = radius / stacks;
     float altura = height / stacks;
@@ -155,7 +155,7 @@ void drawCone(float radius, float height, int slices1, int stacks1, string name)
 
     if (file.is_open()) {
 
-        //fazer a circunferência da base
+        //fazer a circunferï¿½ncia da base
         for (i = 0; i < slices; i++) {
             float alfa = (i * 2 * M_PI) / slices;
             float nextalfa = ((i + 1) * 2 * M_PI) / slices;
@@ -211,7 +211,7 @@ void drawCone(float radius, float height, int slices1, int stacks1, string name)
 void dawSphere(float radius, int slices, int stacks, string name) {
 
     fstream(file);
-    file.open("/Users/Asus/Desktop/trabCG/3dFiles/" + name, fstream::out);
+    file.open("/Users/Asus/Desktop/trabCG/3D/" + name, fstream::out);
 
     int vertices = 6 * slices * stacks;
     file << to_string(vertices) << endl;
