@@ -6,6 +6,7 @@ PROJECT(generator)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_executable(${PROJECT_NAME} generator.cpp)
+cmake_policy(SET CMP0072 NEW)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
