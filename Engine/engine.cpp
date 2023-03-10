@@ -42,13 +42,13 @@ int fov;
 int near;
 double far;
 
-bool eixos = true;   //eixos
-int tipo = GL_LINE;   //tipo de desenho linhas, pontos ou fill
+bool eixos = true;   
+int tipo = GL_LINE;   
 float v = 0.0f, g = 1.0f, b = 0.0f; //cores do desenho
 
 
 
-//classe ponto que contem as coordenadas x,y,z de cada ponto junto com os getters e setters
+//gets e sets
 class Ponto {
 	float x;
 	float y;
@@ -94,7 +94,7 @@ public:
 };
 
 
-//lista de pontos onde vao ser guardados em mem�ria todos os pontos do desenho
+//lista de pontos onde vao ser guardados em memoria todos os pontos do desenho
 list<Ponto> pontosLista;
 
 void changeSize(int w, int h) {
@@ -126,8 +126,6 @@ void changeSize(int w, int h) {
 
 
 //funcao desenha
-//pega na lista de pontos e vai percorrer a mesma usando um iterador, a cada 3 pontos desenha um triangulo
-//desta forma, cada iteração do ciclo for 3 pontos e um triangulo sao desenhados avançando assim o iterador em 3 posiçoes
 void draw() {
 
 	for (auto it = pontosLista.begin(); it != pontosLista.end(); ) {
@@ -253,14 +251,53 @@ void processMouseMotion(int x, int y)
 	camY = rAux * sin(betaAux * M_PI / 180.0);
 }
 
+//funçao das teclas extra
+void keyboard(unsigned char key, int x, int y)
+{
+	if (key == 'e') {
+		eixos = !eixos;
+	}
+	if (key == 'f') {    //pinta a figura
+		tipo = GL_FILL;
+	}
+	if (key == 'l') {   
+		tipo = GL_LINE;
+	}
+	if (key == 'p') {
+		tipo = GL_POINT;
+	}
+
+	if (key == 'r') {  //pinta a vermelho
+		v = 1.0f;
+		g = 0.0f;
+		b = 0.0f;
+
+	}
+	if (key == 'g') {  //pinta a verde
+		v = 0.0f;
+		g = 1.0f;
+		b = 0.0f;
+	}
+	if (key == 'b') {   //pinta a azul
+		v = 0.0f;
+		g = 0.0f;
+		b = 1.0f;
+	}
+	if (key == 'w') {   //pinta a branco
+		v = 1.0f;
+		g = 1.0f;
+		b = 1.0f;
+	}
+
+	glutPostRedisplay();
+
+}
 
 
 
 
 
-//funcao que le cada ficheiro .3d a partir do seu caminho
-//preenchendo a lista de pontos com os pontos lidos do ficheiro
-
+//funcao que le cada ficheiro .3d 
 void readFile(string caminho3d) {
 	string linha;
 	vector<string> coordenadas;
@@ -276,16 +313,16 @@ void readFile(string caminho3d) {
 			getline(file, linha);     //pegar na linha atual
 			stringstream ss(linha);		
 			vector<string> result{
-				istream_iterator<string>(ss), {}    //separar a linha nos espaços e guardar como array de strings em result
+				istream_iterator<string>(ss), {}    //separar a linha nos espaços e guardar como array de strings
 			};
-			pontosLista .push_back(Ponto(stof(result[0]), stof(result[1]), stof(result[2]))); //adiciona o Ponto lido � lista de pontos
+			pontosLista .push_back(Ponto(stof(result[0]), stof(result[1]), stof(result[2])));
 		}
 	}
 	else { cout << "Erro ao ler o ficheiro .3d" << endl; }
 }
 
 
-//funcao que le o ficheiro xml da pasta ../xml/
+//funcao que le o ficheiro xml da pasta XML
 void readXML(string file) {
 	XMLDocument xml;
 	XMLDocument xmltv;
@@ -312,7 +349,7 @@ void readXML(string file) {
 			cout << "No Root Found\n" << endl;
 		}
 
-        while (elemento3 != nullptr) { //boraaaa
+        while (elemento3 != nullptr) { 
 			const char* fileName = elemento3->Attribute("file");
 			if (fileName != nullptr) {
 				// Concatena o caminho completo do arquivo 3D com o caminho do diretório
@@ -356,48 +393,6 @@ void readXML(string file) {
 		cout << "Erro ao ler o xml" << endl;
 	}
 	return;
-}
-
-//funçao das teclas extra
-void keyboard(unsigned char key, int x, int y)
-{
-	if (key == 'e') {
-		eixos = !eixos;
-	}
-	if (key == 'f') {
-		tipo = GL_FILL;
-	}
-	if (key == 'l') {
-		tipo = GL_LINE;
-	}
-	if (key == 'p') {
-		tipo = GL_POINT;
-	}
-
-	if (key == 'r') {
-		v = 1.0f;
-		g = 0.0f;
-		b = 0.0f;
-
-	}
-	if (key == 'g') {
-		v = 0.0f;
-		g = 1.0f;
-		b = 0.0f;
-	}
-	if (key == 'b') {
-		v = 0.0f;
-		g = 0.0f;
-		b = 1.0f;
-	}
-    if (key == 'w') {
-        v = 1.0f;
-        g = 1.0f;
-        b = 1.0f;
-    }
-
-	glutPostRedisplay();
-
 }
 
 
