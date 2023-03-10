@@ -404,7 +404,7 @@ int main(int argc, char* argv[]) {
 		readXML(argv[1]);
 	}
 	else {
-		readXML("test_1_5.xml");
+		readXML("test_1_1.xml");
 	}
 
 
